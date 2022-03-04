@@ -7,18 +7,17 @@ function incluirTemplate(string $nombre, bool $inicio = false ){
 include TEMPLATE_URL . "/${nombre}.php"; // <-- require 'app.php';
 
 }
-function autenticado(): bool{
+function autenticado(){
     session_start();
 
-    $auth = $_SESSION['login'];
-    if($auth) {
-        return true;
+    if(!$_SESSION['login']) {
+        header('Location: /');
     }
-    return false;
 }
 
 function debuggear($a) {
     echo "<pre>";
     var_dump($a);
     echo "</pre>";
+    exit;
 }

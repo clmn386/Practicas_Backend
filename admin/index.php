@@ -1,11 +1,10 @@
 <?php 
-   require '../includes/app.php';
-    $auth = autenticado();
-    if (!$auth){
-        header('location: /');
-    }
-    /* Importar Conexion */
-    $db = conectarDB();
+require '../includes/app.php';
+
+autenticado();
+
+/* Importar Conexion */
+$db = conectarDB();
 
     /* Escribir Query */
     $query = "SELECT * FROM propiedades";

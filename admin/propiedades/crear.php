@@ -1,12 +1,12 @@
 <?php 
-   require '../../includes/app.php';
-        $auth = autenticado();
-        if (!$auth){
-            header('location: /');
-        }
+require '../../includes/app.php';
 
-    /* Importar Conexion */
-    $db = conectarDB();
+use App\Propiedad;
+
+autenticado();
+
+/* Importar Conexion */
+$db = conectarDB();
 
     /* Escribir Query */
     $consulta = "SELECT * FROM vendedores";

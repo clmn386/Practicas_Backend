@@ -1,9 +1,7 @@
 <?php 
-   require '../../includes/app.php';
-        $auth = autenticado();
-        if (!$auth){
-            header('location: /');
-        }
+require '../../includes/app.php';
+
+autenticado();
 
     // Validacion de URL que sea id correcto
     $id = $_GET['id'];
@@ -20,10 +18,6 @@
     $consulta = "SELECT * FROM propiedades WHERE id = ${id}";
     $resultado = mysqli_query($db,$consulta);
     $propiedad = mysqli_fetch_assoc($resultado);
-
-/*  echo"<pre>";
-    var_dump($propiedad);
-    echo"</pre>"; */
 
     // Consulta para obtener VEndedores
     $consulta = "SELECT * FROM vendedores";
