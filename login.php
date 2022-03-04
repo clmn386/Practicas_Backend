@@ -1,6 +1,6 @@
 <?php 
     //CONECTAR BASE DE DATOS
-    require __DIR__.'/includes/config/database.php';
+    require 'includes/app.php';
     $db = conectarDB();
 
 
@@ -41,7 +41,7 @@
 
     }
     //Incluye el header
-    require 'includes/funciones.php';
+
     incluirTemplate('header');
 ?>
 

@@ -7,7 +7,7 @@
         header('Location: /anuncios.php');
     } */
     //  Importar BD
-    require __DIR__.'/includes/config/database.php';
+    require 'includes/app.php';
     $db = conectarDB();
     //  Query
     $query =  "SELECT * FROM propiedades WHERE id = ${id}";
@@ -15,7 +15,7 @@
     $consulta = mysqli_query($db, $query);
     $propiedad = mysqli_fetch_assoc($consulta);
 
-    require 'includes/funciones.php';
+
     incluirTemplate('header');
 ?>
 

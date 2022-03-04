@@ -1,5 +1,5 @@
 <?php 
-        require '../../includes/funciones.php';
+   require '../../includes/app.php';
         $auth = autenticado();
         if (!$auth){
             header('location: /');
@@ -14,7 +14,6 @@
     }
 
     /* Importar Conexion */
-    require '../../includes/config/database.php';
     $db = conectarDB();
 
     //Obtener los datos de "propiedad" en Base de Datos por id

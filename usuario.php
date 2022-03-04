@@ -1,7 +1,7 @@
 <?php 
-
+   require 'includes/app.php';
 // importar la conexion 
-include __DIR__.'/includes/config/database.php';
+
 $db = conectarDB();
 
 // Crear un Email y passw

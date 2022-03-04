@@ -1,11 +1,10 @@
 <?php 
-    require '../includes/funciones.php';
+   require '../includes/app.php';
     $auth = autenticado();
     if (!$auth){
         header('location: /');
     }
     /* Importar Conexion */
-    require '../includes/config/database.php';
     $db = conectarDB();
 
     /* Escribir Query */
@@ -13,7 +12,6 @@
 
     /* Consultar BD */
     $resultadoConsulta = mysqli_query($db, $query);
-
 
     // Muestra mensaje condicional 
     $resultado = $_GET['resultado'] ?? null; 

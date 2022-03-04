@@ -1,8 +1,10 @@
 <?php
+
     if(!isset($_SESSION)){
         session_start();
     }
     $auth = $_SESSION['login'] ?? false;
+    $inicio=false;
 
 ?>
 
@@ -40,6 +42,7 @@
                 </div>
                 
             </div> <!--.barra-->
+
             <?php echo $inicio ? "<h1>Venta de Casas y Departamentos de Lujo</h1>" : '';
             
             ?>
