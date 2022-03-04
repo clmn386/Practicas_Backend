@@ -14,10 +14,11 @@ $db = conectarDB();
     /* Consultar BD */
     $resultado = mysqli_query($db, $consulta);
     
-
     // ARREGLO MENSAJES DE ERRORES
-    $errores = [];
+    $errores = Propiedad::getErrores();
 
+    
+    
     $titulo = '';
     $precio = '';
     $descripcion = '';
@@ -29,58 +30,32 @@ $db = conectarDB();
     // EJECUCION DEL CODIGO DESPUES QUE EL USUARIO ENVIA EL FORMULARIO
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-        $titulo = mysqli_real_escape_string( $db, $_POST['titulo'] );
-        $precio = mysqli_real_escape_string( $db, $_POST['precio'] );
-        $descripcion = mysqli_real_escape_string( $db, $_POST['descripcion'] );
-        $habitaciones = mysqli_real_escape_string( $db, $_POST['habitaciones'] );
-        $wc = mysqli_real_escape_string( $db, $_POST['wc'] );
-        $estacionamientos = mysqli_real_escape_string( $db, $_POST['estacionamientos'] );
-        $vendedorId = mysqli_real_escape_string( $db, $_POST['vendedor'] );
-        $creado = date('Y/m/d');
-        $imagen =  $_FILES['imagen'];
+        $propiedad = new Propiedad($_POST); 
+
+        $errores = $propiedad->validar();
+
+
+        
+        
+        //-------------------  zona de peligro  -------------------------
+      
         // asignar files hacia una varieble
-
-        if(!$titulo){
-            $errores[] =  'falta colocar titutlo';
-        }
-
-        if(!$precio){            
-            $errores[] = 'falta colocar precio';
-        }
-        
-        if( strlen($descripcion) < 50){
-            $errores[] = 'necesario mas de 50 caracteres en descripcion obligatoria';
-        }
-
-        if(!$habitaciones){            
-            $errores[] = 'faltan numero de habitaciones';
-        }
-
-        if(!$wc){            
-            $errores[] = 'faltan numero de baños';
-        }
-    
-        if(!$estacionamientos){            
-            $errores[] = 'faltan numero de estacionamiento';
-        }
-                
-        if(!$vendedorId){            
-            $errores[] = 'elige un vendedor';
-        }
-
-        if(!$imagen['name'] || $imagen['error']){
-            $errores[] = 'la imagen es obligatoria';
-        }
-        
+       
         /* Validar por tamaño */
-        $medida =  1000 * 1000;
+/*         $medida =  1000 * 1000;
 
         if($imagen['size'] > $medida){
             $errores[] = 'tamaño muy grande';
-        }
+        } */
 
         //Validar Arreglo errores - Vacio - 
         if (empty($errores)){
+ 
+ 
+            $propiedad->guardar();
+ 
+            $imagen =  $_FILES['imagen'];
+
 
             /* Subida de Archivos */
             $carpetaImagenes = '../../imagenes/';
@@ -99,9 +74,7 @@ $db = conectarDB();
 
             move_uploaded_file($imagen['tmp_name'], $carpetaImagenes. $nombreImagen );
  
-            //Insertar en la Base de Datos
-            $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamientos, creado, vendedorId) VALUES ('$titulo','$precio','$nombreImagen','$descripcion','$habitaciones','$wc','$estacionamientos','$creado','$vendedorId') ";
-
+    
             $resultado = mysqli_query($db,$query);
             if($resultado){
                 header('Location: /admin?resultado=1');
@@ -192,7 +165,7 @@ $db = conectarDB();
             <fieldset>
                 <legend>Vendedor</legend>
 
-                <select name="vendedor">
+                <select name="vendedorId">
                     <option value="">--Seleccione--</option>
                     <!-- <option value="1">Carlos</option> -->
 

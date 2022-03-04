@@ -1,10 +1,10 @@
 <?php
 
 function conectarDB () : mysqli {
-    $db = mysqli_connect('localhost:1433', 'clmn386', 'A.123456', 'bienes_raices');
+    $db = new mysqli('localhost:1433', 'clmn386', 'A.123456', 'bienes_raices');
 
     if(!$db) {
-        echo "ERROR...";
+        echo "ERROR no se puede conectar a BD...";
         exit;
     } 
     return $db;

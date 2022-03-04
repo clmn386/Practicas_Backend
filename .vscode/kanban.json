@@ -1,0 +1,103 @@
+{
+    "title": "Kanban",
+    "cols": [
+        {
+            "title": "Bugs",
+            "tasks": [
+                {
+                    "text": "detectar error de tipo de formato que no coincida con jpg, jpeg, png",
+                    "id": "cl0cgtjnd000k3z5s7afup6fn"
+                }
+            ],
+            "id": "cl0cgkl56000a3z5stv56a5r5",
+            "color": "#eb144c"
+        },
+        {
+            "title": "To-Do",
+            "tasks": [
+                {
+                    "text": "funcion que guarde en una carpeta los archivos hasheando nombres, y deje en BD el mismo nombre que en carpeta",
+                    "id": "cl0cr0893000c3z5sid23kckv"
+                },
+                {
+                    "text": "agregar validacion para imagen, que incluya formatos elegidos",
+                    "id": "cl0cqzlwf000b3z5sxmf8wamo"
+                },
+                {
+                    "text": "propiedad::all()",
+                    "id": "cl0ci7857000f3z5s4uvp4sjy"
+                },
+                {
+                    "text": "propiedad::find()",
+                    "id": "cl0ci6jg3000e3z5sfphpqv4s"
+                },
+                {
+                    "text": "$propiedad->eliminar;",
+                    "id": "cl0ci69eb000d3z5se0mj06o4"
+                },
+                {
+                    "text": "$propiedad->actualizar;",
+                    "id": "cl0ci5zrw000c3z5s658rd0pt"
+                }
+            ],
+            "id": "cl0cgkl56000c3z5sai28sp01",
+            "color": "#fcb900"
+        },
+        {
+            "title": "Doing",
+            "tasks": [],
+            "id": "cl0cgkl56000d3z5sf8eojjvy",
+            "color": "#0693e3"
+        },
+        {
+            "title": "Done",
+            "tasks": [
+                {
+                    "text": "modificar las paginas haciendo referencia a app.php",
+                    "id": "cl0cgqept000j3z5s5vli0vgs"
+                },
+                {
+                    "text": "construir (clase propiedad)",
+                    "id": "cl0ci4ikc000a3z5son5a4atl"
+                },
+                {
+                    "text": "revisar cambios en la raiz del proyecto",
+                    "id": "cl0cmb1dx000a3z5s6dcar5xi"
+                },
+                {
+                    "text": "repasar clases de implementacion de POO a la web.",
+                    "id": "cl0cgwhkz000l3z5stojx2tlk"
+                },
+                {
+                    "text": "$propiedad->guardar;",
+                    "id": "cl0ci5ck3000b3z5s6jvdxite"
+                },
+                {
+                    "text": "sanitizado de archivos para guardar en carpeta",
+                    "id": "cl0cgm97u000h3z5suok9ipmo"
+                },
+                {
+                    "text": "hacer minimo 5 videos con practica y comprencion, aplicacion y modificacion.",
+                    "id": "cl0cgpib5000i3z5seq50znai"
+                },
+                {
+                    "text": "self::getErrores()",
+                    "id": "cl0cqa22f000a3z5s46kap79x"
+                },
+                {
+                    "text": "producto->validar()",
+                    "id": "cl0cqj3d3000a3z5sv0l98wlf"
+                },
+                {
+                    "text": "arreglo de errores para mostrar en pantalla al usuario desde clase propiedad\n",
+                    "id": "cl0cq20wv000a3z5s8wtnwnhf"
+                }
+            ],
+            "id": "cl0cgkl56000e3z5s0sjmjzfj",
+            "color": "#00d084"
+        }
+    ],
+    "autosave": true,
+    "saveToFile": true,
+    "timestamp": 1646418474858
+}
