@@ -2,6 +2,7 @@
 require '../../includes/app.php';
 
 use App\Propiedad;
+use Intervention\Image\ImageManagerStatic as image;
 
 autenticado();
 
@@ -17,8 +18,6 @@ $db = conectarDB();
     // ARREGLO MENSAJES DE ERRORES
     $errores = Propiedad::getErrores();
 
-    
-    
     $titulo = '';
     $precio = '';
     $descripcion = '';
@@ -26,39 +25,45 @@ $db = conectarDB();
     $wc = '';
     $estacionamientos = '';
     $vendedorId = '';
+
     // EJECUCION DEL CODIGO DESPUES QUE EL USUARIO ENVIA EL FORMULARIO
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $Archivo = $_FILES['imagen']['type'];
-        $validar = '';
-        
-        $propiedad = new Propiedad($_POST); 
-        
+
+       /* Crea una nueva instancia */
+         $propiedad = new Propiedad($_POST); 
+
+        /* Genera el nombre unico */
+        $formato = $propiedad->FormatoImagen();
+        $nombreImagen = md5( uniqid( rand(), true) ). $formato;
+
+        /* Setear la imagen */
+        if($_FILES['imagen']['tmp_name']){
+            $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800,600);
+            $propiedad->setImagen($nombreImagen);
+        }
+
+        /* validar la imagen  */
         $errores = $propiedad->validar();
         
-        $formato = $propiedad->FormatoImagen();
 
-    
         //Validar Arreglo errores - Vacio - 
         if (empty($errores)){
  
- 
-            $propiedad->guardar();
- 
-            $imagen =  $_FILES['imagen'];
-
-
-            /* Subida de Archivos */
-            $carpetaImagenes = '../../imagenes/';
-            if(!is_dir($carpetaImagenes)){
-                mkdir($carpetaImagenes);
+            /* crear carpeta */
+            if(!is_dir(CARPETAS_IMAGENES)){
+                mkdir(CARPETAS_IMAGENES);
             }
+            
+            //Guardar imagen en servidor
+            $image->save(CARPETAS_IMAGENES . $nombreImagen);
+            
+            //Guarda en la BD
+            $resultado = $propiedad->guardar();
 
-            $nombreImagen = md5( uniqid( rand(), true) ). $formato;
+            //Mostrar resultado
 
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes. $nombreImagen );
- 
-    
-            $resultado = mysqli_query($db,$query);
+
+            //Redireccionar al usuario.
             if($resultado){
                 header('Location: /admin?resultado=1');
             }

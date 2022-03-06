@@ -32,6 +32,12 @@
         },
         {
             "title": "Doing",
+            "tasks": [],
+            "id": "cl0cgkl56000d3z5sf8eojjvy",
+            "color": "#0693e3"
+        },
+        {
+            "title": "Done",
             "tasks": [
                 {
                     "text": "funcion que guarde en una carpeta los archivos hasheando nombres, y deje en BD el mismo nombre que en carpeta",
@@ -40,14 +46,7 @@
                 {
                     "text": "resolver el bug de la validacion de imagen y la carga entre carpeta y nombre hasheado y la base de datos",
                     "id": "cl0fav1l2000a3z5suus3sbel"
-                }
-            ],
-            "id": "cl0cgkl56000d3z5sf8eojjvy",
-            "color": "#0693e3"
-        },
-        {
-            "title": "Done",
-            "tasks": [
+                },
                 {
                     "text": "detectar error de tipo de formato que no coincida con jpg, jpeg, png",
                     "id": "cl0cgtjnd000k3z5s7afup6fn"
@@ -103,5 +102,5 @@
     ],
     "autosave": true,
     "saveToFile": true,
-    "timestamp": 1646588396977
+    "timestamp": 1646601795958
 }

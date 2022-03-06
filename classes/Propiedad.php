@@ -31,7 +31,7 @@ class Propiedad {
         $this->id = $args['id'] ?? NULL;
         $this->titulo = $args['titulo'] ?? '';
         $this->precio = $args['precio'] ?? '';
-        $this->imagen = $_FILES['imagen']['name'] ?? ''; // modificacion se pasa valos proviconal de imagen, pendiente sanitizar.
+        $this->imagen = $args['imagen'] ?? ''; // modificacion se pasa valos proviconal de imagen, pendiente sanitizar.
         $this->descripcion = $args['descripcion'] ?? '';
         $this->habitaciones = $args['habitaciones'] ?? '';
         $this->wc = $args['wc'] ?? '';
@@ -53,7 +53,7 @@ class Propiedad {
 
         //Hacemos consulta a la BD para subir archivos.
         $resultado = self::$db->query($query);
-        debuggear($resultado);
+        return $resultado;
     }
     //Identificar y unir los atributos de la base de datos
     public function atributos(){ 
@@ -82,7 +82,7 @@ class Propiedad {
     public function validar(){
 
         if(!$this->titulo){
-            self::$errores[] =  'falta colocar titutlo';
+            self::$errores[] = 'falta colocar titutlo';
         }
  
         if(!$this->precio){            
@@ -109,14 +109,13 @@ class Propiedad {
             self::$errores[] = 'elige un vendedor';
         }
         //valida falta de imagen o formato erroneo.
-        if(!$this->imagen){
-            self::$errores[] = 'falta imagen';
-        }elseif(self::FormatoImagen()===false){
-            self::$errores[] = 'error de formato en imagen';
+        if(self::FormatoImagen()===false){
+            self::$errores[] = 'falta imagen o tiene error de formato subido';
         }
         return self::$errores;
     }
 
+    // Funcion validacion formato de imagen
     public static function FormatoImagen(){ // Manera rudimentaria de comprobar tanto el formato correcto o envia mensaje de error en funcion validar().
         if($_FILES['imagen']['type']==='image/png'){
             return '.png'; 
@@ -124,6 +123,13 @@ class Propiedad {
             return '.jpeg'; 
         }else{
             return false;
+        }
+    }
+
+    public function setImagen($imagen) {
+        // asignar al atributo imagen el nombre generado para carpeta
+        if($imagen) {
+            $this->imagen = $imagen;
         }
     }
 

@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'e5651f27d7943aacb67fe01e6da01b49650a9df8',
+        'reference' => 'f5a3274518c5d26d95c07ea6c7bb0e17437ae1ae',
         'name' => 'clmn3/practicas_backend',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'e5651f27d7943aacb67fe01e6da01b49650a9df8',
+            'reference' => 'f5a3274518c5d26d95c07ea6c7bb0e17437ae1ae',
             'dev_requirement' => false,
         ),
         'guzzlehttp/psr7' => array(
