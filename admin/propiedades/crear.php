@@ -26,28 +26,18 @@ $db = conectarDB();
     $wc = '';
     $estacionamientos = '';
     $vendedorId = '';
-
     // EJECUCION DEL CODIGO DESPUES QUE EL USUARIO ENVIA EL FORMULARIO
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-
+        $Archivo = $_FILES['imagen']['type'];
+        $validar = '';
+        
         $propiedad = new Propiedad($_POST); 
-
+        
         $errores = $propiedad->validar();
-
-
         
-        
-        //-------------------  zona de peligro  -------------------------
-      
-        // asignar files hacia una varieble
-       
-        /* Validar por tamaño */
-/*         $medida =  1000 * 1000;
+        $formato = $propiedad->FormatoImagen();
 
-        if($imagen['size'] > $medida){
-            $errores[] = 'tamaño muy grande';
-        } */
-
+    
         //Validar Arreglo errores - Vacio - 
         if (empty($errores)){
  
@@ -63,14 +53,7 @@ $db = conectarDB();
                 mkdir($carpetaImagenes);
             }
 
-            $final = '';
-                if ($imagen['type'] === 'image/png') {
-                    $final = '.png';
-                }else{
-                    $final ='.jpg';
-                }
-            
-            $nombreImagen = md5( uniqid( rand(), true) ). $final;
+            $nombreImagen = md5( uniqid( rand(), true) ). $formato;
 
             move_uploaded_file($imagen['tmp_name'], $carpetaImagenes. $nombreImagen );
  

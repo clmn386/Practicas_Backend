@@ -108,12 +108,23 @@ class Propiedad {
         if(!$this->vendedorId){            
             self::$errores[] = 'elige un vendedor';
         }
-
-        
- //-----------------agregar validacion para imagen ------------------04/03/2022
-/*        if(!$this->imagen['name'] || $this->imagen['error']){
-            self::$errores[] = 'la imagen es obligatoria';
-        } */
+        //valida falta de imagen o formato erroneo.
+        if(!$this->imagen){
+            self::$errores[] = 'falta imagen';
+        }elseif(self::FormatoImagen()===false){
+            self::$errores[] = 'error de formato en imagen';
+        }
         return self::$errores;
     }
+
+    public static function FormatoImagen(){ // Manera rudimentaria de comprobar tanto el formato correcto o envia mensaje de error en funcion validar().
+        if($_FILES['imagen']['type']==='image/png'){
+            return '.png'; 
+        }elseif($_FILES['imagen']['type']==='image/jpeg'){
+            return '.jpeg'; 
+        }else{
+            return false;
+        }
+    }
+
 }

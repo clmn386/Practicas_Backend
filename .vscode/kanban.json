@@ -3,26 +3,13 @@
     "cols": [
         {
             "title": "Bugs",
-            "tasks": [
-                {
-                    "text": "detectar error de tipo de formato que no coincida con jpg, jpeg, png",
-                    "id": "cl0cgtjnd000k3z5s7afup6fn"
-                }
-            ],
+            "tasks": [],
             "id": "cl0cgkl56000a3z5stv56a5r5",
             "color": "#eb144c"
         },
         {
             "title": "To-Do",
             "tasks": [
-                {
-                    "text": "funcion que guarde en una carpeta los archivos hasheando nombres, y deje en BD el mismo nombre que en carpeta",
-                    "id": "cl0cr0893000c3z5sid23kckv"
-                },
-                {
-                    "text": "agregar validacion para imagen, que incluya formatos elegidos",
-                    "id": "cl0cqzlwf000b3z5sxmf8wamo"
-                },
                 {
                     "text": "propiedad::all()",
                     "id": "cl0ci7857000f3z5s4uvp4sjy"
@@ -45,13 +32,30 @@
         },
         {
             "title": "Doing",
-            "tasks": [],
+            "tasks": [
+                {
+                    "text": "funcion que guarde en una carpeta los archivos hasheando nombres, y deje en BD el mismo nombre que en carpeta",
+                    "id": "cl0cr0893000c3z5sid23kckv"
+                },
+                {
+                    "text": "resolver el bug de la validacion de imagen y la carga entre carpeta y nombre hasheado y la base de datos",
+                    "id": "cl0fav1l2000a3z5suus3sbel"
+                }
+            ],
             "id": "cl0cgkl56000d3z5sf8eojjvy",
             "color": "#0693e3"
         },
         {
             "title": "Done",
             "tasks": [
+                {
+                    "text": "detectar error de tipo de formato que no coincida con jpg, jpeg, png",
+                    "id": "cl0cgtjnd000k3z5s7afup6fn"
+                },
+                {
+                    "text": "agregar validacion para imagen, que incluya formatos elegidos",
+                    "id": "cl0cqzlwf000b3z5sxmf8wamo"
+                },
                 {
                     "text": "modificar las paginas haciendo referencia a app.php",
                     "id": "cl0cgqept000j3z5s5vli0vgs"
@@ -99,5 +103,5 @@
     ],
     "autosave": true,
     "saveToFile": true,
-    "timestamp": 1646418474858
+    "timestamp": 1646588396977
 }
