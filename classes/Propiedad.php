@@ -37,7 +37,7 @@ class Propiedad {
         $this->wc = $args['wc'] ?? '';
         $this->estacionamientos = $args['estacionamientos'] ?? '';
         $this->creado = date('Y/m/d');
-        $this->vendedorId = $args['vendedorId'] ?? '';
+        $this->vendedorId = $args['vendedorId'] ?? 1; // necesario de momento antes de crear la clase vendedor.
     }
 
     public function guardar(){
@@ -132,5 +132,53 @@ class Propiedad {
             $this->imagen = $imagen;
         }
     }
+
+    //Lista todas las propiedades
+    public static function all(){
+    
+    $query = "SELECT * FROM propiedades";
+    $resultado = self::consultarSQL($query);
+    return $resultado;
+    }
+    //busca un registro por el Id
+    public static function find($id) {
+    $query = "SELECT * FROM propiedades WHERE id = ${id}";
+    $resultado = self::consultarSQL($query);
+    return array_shift($resultado);
+    }
+
+    public static function consultarSQL($query){
+    //consultar la base de datos
+    $resultado = self::$db->query($query);
+    //iterar la base de datos
+    $array =[];
+    while($registro = $resultado->fetch_assoc()) {
+        $array[] = self::crearObjeto($registro);
+        }
+        //liberar la memoria
+    $resultado->free();
+        //retornar los resultados
+    return $array;
+        
+    }
+    public static function crearObjeto($registro){
+    //creamos un nuevo objeto de la clase actual
+    $objeto = new self; 
+        foreach($registro as $key => $value)
+            if(property_exists( $objeto, $key )){
+            $objeto->$key = $value;
+        } 
+
+        return $objeto;
+    }
+
+    //Sincronizar
+     public function sincronizar( $args = [] ) {
+        foreach ($args as $key => $value) {
+            if(property_exists( $this, $key ) && !is_null($value)){
+                $this->$key = $value;
+            }
+        }
+     }
 
 }

@@ -24,3 +24,8 @@ function debuggear($a) {
     exit;
 }
 
+//Escapa Sanitizar el html
+function san($html) : string {
+    $san = htmlspecialchars($html);                     
+    return $san;
+}
