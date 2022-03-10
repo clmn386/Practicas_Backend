@@ -24,22 +24,21 @@ $propiedad = new Propiedad;
 
        /* Crea una nueva instancia */
          $propiedad = new Propiedad($_POST['propiedad']); 
-/*         debuggear($propiedad); */
+
         /* Genera el nombre unico */
 
         $formato = $propiedad->FormatoImagen();
         $nombreImagen = md5( uniqid( rand(), true) ). $formato;
-
-        /* Setear la imagen */
-        if($_FILES['propiedad']['tmp_name']['imagen']){
+        
+        $imgDirTemp = $_FILES['propiedad']['tmp_name']['imagen'];
+        if ($imgDirTemp) {
             $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
             $propiedad->setImagen($nombreImagen);
         }
-
+        
         /* validar la imagen  */
         $errores = $propiedad->validar();
         
-
         //Validar Arreglo errores - Vacio - 
         if (empty($errores)){
  
@@ -52,15 +51,8 @@ $propiedad = new Propiedad;
             $image->save(CARPETAS_IMAGENES . $nombreImagen);
             
             //Guarda en la BD
-            $resultado = $propiedad->guardar();
+            $propiedad->guardar();
 
-            //Mostrar resultado
-
-
-            //Redireccionar al usuario.
-            if($resultado){
-                header('Location: /admin?resultado=1');
-            }
         }
     }
     //HEADER TEMPLATE

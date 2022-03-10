@@ -9,7 +9,6 @@ class Propiedad {
     //Errores o validacion
     protected static $errores = [];
 
-
     //FORMA DE DECLARAR ATRIBUTOS ANTES DE PHP-v8
     public $id;
     public $titulo;
@@ -41,9 +40,10 @@ class Propiedad {
     }
 
     public function guardar(){
-        if(isset($this->id)){
+        if(!is_null($this->id)){
             //actualizar
             $this->actualizar();
+
         } else {
             //creando una nueva clase
             $this->crear();
@@ -62,7 +62,10 @@ class Propiedad {
 
         //Hacemos consulta a la BD para subir archivos.
         $resultado = self::$db->query($query);
-        return $resultado;
+        //Redireccionar al usuario.
+        if($resultado){
+            header('Location: /admin?resultado=1');
+        }
     }
 
     public function actualizar(){
@@ -96,7 +99,6 @@ class Propiedad {
             header('location: /admin?resultado=3');
         }
     }
-
 
     //Identificar y unir los atributos de la base de datos
     public function atributos(){ 
@@ -172,7 +174,7 @@ class Propiedad {
 
     public function setImagen($imagen) {
         // Eliminar imagen previa
-        if (isset ($this->imagen)) {
+        if (is_null($this->id)) {
             $this->borrarImagen();
         }
         // asignar al atributo imagen el nombre generado para carpeta
@@ -180,6 +182,7 @@ class Propiedad {
             $this->imagen = $imagen;
         }
     }
+
     //Eliminar archivo
     public function borrarImagen() {
         $existeArchivo = file_exists(CARPETAS_IMAGENES . $this->imagen);

@@ -31,29 +31,33 @@ autenticado();
         $args = $_POST['propiedad'];
         
         $propiedad->sincronizar($args);
-        
         //Validacion
         $ignore_img=true;
         $errores = $propiedad->validar($ignore_img);
         
         //Subida de Archivos
         $formato = $propiedad->FormatoImagen();
-        $nombreImagen = md5( uniqid( rand(), true) ). $formato;
         
-        /* Setear la imagen */
-        if($_FILES['propiedad']['tmp_name']['imagen']){
+        $nombreImagen = md5( uniqid( rand(), true) ). $formato;
+
+
+        //Validacion de imagen y archivar en carpeta
+        if ($_FILES['propiedad']['tmp_name']['imagen']) {
             $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
             $propiedad->setImagen($nombreImagen);
+
+            if (empty($errores)){
+                $image->save(CARPETAS_IMAGENES . $nombreImagen);
+                $propiedad->guardar();
+            }
         }
 
         //Validar Arreglo errores - Vacio - 
-        if (empty($errores)){
-            //alamacenar la imagen
-            $image->save(CARPETAS_IMAGENES . $nombreImagen);
 
+        if (empty($errores)){
+            
             $propiedad->guardar();
-            }
-        
+        }
     }
     //HEADER TEMPLATE
     incluirTemplate('header');
