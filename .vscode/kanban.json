@@ -13,18 +13,6 @@
                 {
                     "text": "propiedad::all()",
                     "id": "cl0ci7857000f3z5s4uvp4sjy"
-                },
-                {
-                    "text": "propiedad::find()",
-                    "id": "cl0ci6jg3000e3z5sfphpqv4s"
-                },
-                {
-                    "text": "$propiedad->eliminar;",
-                    "id": "cl0ci69eb000d3z5se0mj06o4"
-                },
-                {
-                    "text": "$propiedad->actualizar;",
-                    "id": "cl0ci5zrw000c3z5s658rd0pt"
                 }
             ],
             "id": "cl0cgkl56000c3z5sai28sp01",
@@ -32,13 +20,26 @@
         },
         {
             "title": "Doing",
-            "tasks": [],
+            "tasks": [
+                {
+                    "text": "$propiedad->eliminar;",
+                    "id": "cl0ci69eb000d3z5se0mj06o4"
+                }
+            ],
             "id": "cl0cgkl56000d3z5sf8eojjvy",
             "color": "#0693e3"
         },
         {
             "title": "Done",
             "tasks": [
+                {
+                    "text": "$propiedad->actualizar;",
+                    "id": "cl0ci5zrw000c3z5s658rd0pt"
+                },
+                {
+                    "text": "propiedad::find()",
+                    "id": "cl0ci6jg3000e3z5sfphpqv4s"
+                },
                 {
                     "text": "funcion que guarde en una carpeta los archivos hasheando nombres, y deje en BD el mismo nombre que en carpeta",
                     "id": "cl0cr0893000c3z5sid23kckv"
@@ -102,5 +103,5 @@
     ],
     "autosave": true,
     "saveToFile": true,
-    "timestamp": 1646601795958
+    "timestamp": 1646903538372
 }

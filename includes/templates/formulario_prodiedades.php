@@ -23,9 +23,9 @@
     <label for="imagen">Imagen:</label>
     <input 
     type="file" 
-    id="propiedad[imagen]" 
-    name="imagen" 
-    accept="image/jpeg, image/png" name="imagen">
+    id="imagen" 
+    name="propiedad[imagen]" 
+    accept="image/jpeg, image/png">
     <?php if($propiedad->imagen){ ?>
         <img src="/imagenes/<?php echo $propiedad->imagen ?>" class="imagen-small">
     <?php } ?>
