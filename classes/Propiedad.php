@@ -85,6 +85,17 @@ class Propiedad {
             header('Location: /admin?resultado=2');
         }
     }
+    //Eliminar un registro
+    public function eliminar() {
+        //Elimina propiedad
+        $query = "DELETE FROM propiedades WHERE id = ".self::$db->escape_string($this->id) . " LIMIT 1";
+        $resultado = self::$db->query($query);
+        
+        if($resultado) {
+            $this->borrarImagen();
+            header('location: /admin?resultado=3');
+        }
+    }
 
 
     //Identificar y unir los atributos de la base de datos
@@ -161,16 +172,20 @@ class Propiedad {
 
     public function setImagen($imagen) {
         // Eliminar imagen previa
-        if ($this->imagen) {
-            $existeArchivo = file_exists(CARPETAS_IMAGENES . $this->imagen);
-
-            if($existeArchivo) {
-                unlink(CARPETAS_IMAGENES . $this->imagen);
-            }
+        if (isset ($this->imagen)) {
+            $this->borrarImagen();
         }
         // asignar al atributo imagen el nombre generado para carpeta
         if($imagen) {
             $this->imagen = $imagen;
+        }
+    }
+    //Eliminar archivo
+    public function borrarImagen() {
+        $existeArchivo = file_exists(CARPETAS_IMAGENES . $this->imagen);
+
+        if($existeArchivo) {
+            unlink(CARPETAS_IMAGENES . $this->imagen);
         }
     }
 
