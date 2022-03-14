@@ -1,11 +1,12 @@
 <?php 
 
 use App\Propiedad;
+use App\Vendedor;
 use Intervention\Image\ImageManagerStatic as image;
 require '../../includes/app.php';
 
 autenticado();
-
+    $vendedores = Vendedor::all();
     // Validacion de URL que sea id correcto
     $id = $_GET['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -47,17 +48,13 @@ autenticado();
             $propiedad->setImagen($nombreImagen);
 
             if (empty($errores)){
-                $image->save(CARPETAS_IMAGENES . $nombreImagen);
+                if ($_FILES['propiedad']['tmp_name']['imagen']) {
+                    $image->save(CARPETAS_IMAGENES . $nombreImagen);
+                }
                 $propiedad->guardar();
             }
         }
 
-        //Validar Arreglo errores - Vacio - 
-
-        if (empty($errores)){
-            
-            $propiedad->guardar();
-        }
     }
     //HEADER TEMPLATE
     incluirTemplate('header');

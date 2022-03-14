@@ -64,7 +64,7 @@
     <input 
     type="number" 
     id="estacionamientos" 
-    value="<?php echo san($propiedad->estacionamientos); ?>" 
+    value="<?php echo san($propiedad->estacionamientos); ?>"
     name="propiedad[estacionamientos]" 
     placeholder="ej: 3" 
     min="1" 
@@ -73,4 +73,13 @@
 
 <fieldset>
  <legend>Vendedor</legend>
+        <label for="vendedor">Vendedor</label>
+        <select name="propiedad[vendedorId]" id="vendedor">
+            <option selected value="">--Seleccionar--</option>
+            <?php foreach($vendedores as $vendedor) { ?>
+                <option
+                <?php echo $propiedad->vendedorId === $vendedor->id ? 'selected' : ''; ?> value="<?php echo san($vendedor->id); ?>"
+                ><?php echo san($vendedor->nombre). " " .san($vendedor->apellido);  ?></option>
+            <?php } ?>
+        </select>
 </fieldset>

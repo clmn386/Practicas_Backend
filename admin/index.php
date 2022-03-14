@@ -3,11 +3,12 @@ require '../includes/app.php';
 
 autenticado();
     use App\Propiedad;
+    use App\Vendedor;
 
     // implementar un metodo para obtenrer todas la propiedades
     $propiedades = Propiedad::all();
+    $vendedores = Vendedor::all();
 
-    
     // Muestra mensaje condicional 
     $resultado = $_GET['resultado'] ?? null; 
 

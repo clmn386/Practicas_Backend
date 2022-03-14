@@ -2,31 +2,26 @@
 require '../../includes/app.php';
 
 use App\Propiedad;
+use App\Vendedor;
 use Intervention\Image\ImageManagerStatic as image;
 
 autenticado();
 
-/* Importar Conexion */
-$db = conectarDB();
-
 $propiedad = new Propiedad;
-    /* Escribir Query */
-    $consulta = "SELECT * FROM vendedores";
+ 
+//Consulta para obtener todo los vendedores
+$vendedores = Vendedor::all();
 
-    /* Consultar BD */
-    $resultado = mysqli_query($db, $consulta);
+// ARREGLO MENSAJES DE ERRORES
+$errores = Propiedad::getErrores();
     
-    // ARREGLO MENSAJES DE ERRORES
-    $errores = Propiedad::getErrores();
-
-    // EJECUCION DEL CODIGO DESPUES QUE EL USUARIO ENVIA EL FORMULARIO
+// EJECUCION DEL CODIGO DESPUES QUE EL USUARIO ENVIA EL FORMULARIO
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-
-       /* Crea una nueva instancia */
-         $propiedad = new Propiedad($_POST['propiedad']); 
-
+        
+        /* Crea una nueva instancia */
+        $propiedad = new Propiedad($_POST['propiedad']); 
         /* Genera el nombre unico */
-
+        
         $formato = $propiedad->FormatoImagen();
         $nombreImagen = md5( uniqid( rand(), true) ). $formato;
         
